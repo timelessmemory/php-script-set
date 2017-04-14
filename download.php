@@ -4,6 +4,47 @@
         使用zipArchive压缩
         先下载到本地服务器， 客户端下载完成后删除
         图片只有一张时直接下载， 多于一张批量下载并打包为zip包。
+
+        http 请求参数样本
+        {
+            "items" :  [
+               {
+                    "_id" : "58edf1e1a2f1b115d475a993",
+                    "year" : "2017",
+                    "quarter" : 2.0,
+                    "accountId" : "58b527d1a2f1b11a5b39cf82",
+                    "distributorId" : "58d082d3a2f1b155af645dd2",
+                    "competitionType" : {
+                        "text" : "品牌专区"
+                    },
+                    "distributorAccount" : "MS000",
+                    "distributorName" : "mario",
+                    "photoUrl" : [ 
+                        "http://vincenthou.qiniudn.com/6798002981711491988960.png", 
+                        "http://vincenthou.qiniudn.com/4255884001581491988960.png", 
+                        "http://vincenthou.qiniudn.com/2675677532951491988974.png"
+                    ],
+                    "uploadTime" : "2017-04-12 09:22:41"
+                },
+                {
+                    "_id" : "58ede81ba2f1b111030a8f32",
+                    "year" : "2017",
+                    "quarter" : 2.0,
+                    "accountId" : "58b527d1a2f1b11a5b39cf82",
+                    "distributorId" : "58d082d3a2f1b155af645dd2",
+                    "competitionType" : {
+                        "text" : "品类专区"
+                    },
+                    "distributorAccount" : "YT00579",
+                    "distributorName" : "times",
+                    "photoUrl" : [ 
+                        "http://vincenthou.qiniudn.com/8799058323211491986459.png", 
+                        "http://vincenthou.qiniudn.com/4736973079271491986459.png"
+                    ],
+                    "uploadTime" : "2017-04-12 08:40:59"
+                }
+            ]
+        }
     */
     actionDownloadImage();
 
@@ -114,6 +155,7 @@
         downloadFile($localPath, $filename . "." . pathinfo($url, PATHINFO_EXTENSION), $deleteDir);
     }
 
+    //任务耗时较多时可以使用job进行处理
     function multiDownload($photoInfos, $dir, $deleteDir)
     {
         $zipFilename = "images.zip";
